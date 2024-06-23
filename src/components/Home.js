@@ -105,10 +105,11 @@ export default function Home() {
         <div className="container">
           <div className="row">
             <div className='col-md-6 aboutVideo'>
-              <video width="100%" controls>
-                <source src="./components/video/3410663-uhd_2562_1440_30fps.mp4" type="video/mp4" />
+              <video width="100%" controls autoplay>
+                <source src="video\About.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
+              {/* <iframe width="560" height="315" src="https://www.youtube.com/embed/5xt_mcAPx3o?si=v_JRtiWKSw4JL8cu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> */}
             </div>
             <div className="col-md-6 text-center">
               <h2>About Us</h2>
@@ -119,7 +120,7 @@ export default function Home() {
 
       </section>
 
-      <section ref={testimonialsRef} id="testimonials" className={`testimonials py-5 ${testimonialsInView ? 'animate__animated animate__backInUp' : ''}`}>
+      <section ref={testimonialsRef} id="testimonials" className={`testimonials mt-5 py-5 ${testimonialsInView ? 'animate__animated animate__backInUp' : ''}`}>
         <div className="container">
           <h2 className="text-center">Testimonials</h2>
           <div className="row">

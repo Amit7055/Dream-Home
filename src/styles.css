@@ -15,6 +15,10 @@ body {
   animation-duration: 4s; /* Adjust the duration as needed */
 }
 
+.animate__fadeInUp{
+  animation-duration: 4s; /* Adjust the duration as needed */
+}
+
 .hero {
   background: url("https://example.com/hero-image.jpg");
   height: 500px;
