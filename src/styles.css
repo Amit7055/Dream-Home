@@ -4,19 +4,19 @@ body {
 
 /* animations.css */
 .animated {
-  animation-duration: 4s; /* Adjust the duration as needed */
+  animation-duration: 4s; 
 }
 
 .animate__fadeIn {
-  animation-duration: 4s; /* Adjust the duration as needed */
+  animation-duration: 4s; 
 }
 
 .animate__fadeInUp {
-  animation-duration: 4s; /* Adjust the duration as needed */
+  animation-duration: 4s; 
 }
 
 .animate__fadeInUp{
-  animation-duration: 4s; /* Adjust the duration as needed */
+  animation-duration: 4s; 
 }
 
 .hero {
