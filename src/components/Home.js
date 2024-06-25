@@ -69,7 +69,7 @@ export default function Home() {
           <div className="row">
             <div className="col-md-4 mb-4 text-center">
               <div className="card">
-                <img src="https://www.theplancollection.com/Upload/Designers/141/1323/Plan1411323MainImage_4_2_2021_10_891_593.jpg" className="card-img-top" alt="Property 1" />
+                <img src="image\Property1.jpg" className="card-img-top" alt="Property 1" />
                 <div className="card-body">
                   <h5 className="card-title">Beautiful Family House</h5>
                   <p className="card-text">Located in a serene neighborhood, this beautiful family house is perfect for you.</p>
@@ -79,7 +79,7 @@ export default function Home() {
             </div>
             <div className="col-md-4 mb-4 text-center">
               <div className="card">
-                <img src="https://media.istockphoto.com/id/1373329869/photo/modern-living-room-interior-3d-render.jpg?s=612x612&w=0&k=20&c=VBzd-UExnctNDY9rfqUc5Ys8IUyBmELYT0R2SSZ1_L4=" className="card-img-top" alt="Property 2" />
+                <img src="image\Property2.jpg" className="card-img-top" alt="Property 2" />
                 <div className="card-body">
                   <h5 className="card-title">Modern Apartment</h5>
                   <p className="card-text">A modern apartment located in the heart of the city with all the amenities you need.</p>
@@ -89,7 +89,7 @@ export default function Home() {
             </div>
             <div className="col-md-4 mb-4 text-center">
               <div className="card">
-                <img src="https://www.theplancollection.com/Upload/Designers/142/1265/Plan1421265MainImage_12_6_2021_2_891_593.jpg" className="card-img-top" alt="Property 3" />
+                <img src="image\Property3.jpg" className="card-img-top" alt="Property 3" />
                 <div className="card-body">
                   <h5 className="card-title">Cozy Cottage</h5>
                   <p className="card-text">A cozy cottage located in the countryside, perfect for a weekend getaway.</p>
@@ -105,11 +105,10 @@ export default function Home() {
         <div className="container">
           <div className="row">
             <div className='col-md-6 aboutVideo'>
-              <video width="100%" controls autoplay>
+              <video width="100%" controls autoPlay muted>
                 <source src="video\About.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
-              {/* <iframe width="560" height="315" src="https://www.youtube.com/embed/5xt_mcAPx3o?si=v_JRtiWKSw4JL8cu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> */}
             </div>
             <div className="col-md-6 text-center">
               <h2>About Us</h2>

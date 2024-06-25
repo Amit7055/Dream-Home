@@ -62,7 +62,7 @@ export default function Header() {
                                         <a className="nav-link" href="#properties" onClick={handleToggleCollapse}>Properties</a>
                                     </li>
                                     <li className="nav-item">
-                                        <Link className="nav-link" to="/login" onClick={handleToggleCollapse}>Login</Link>
+                                        <a className="nav-link" href="login" onClick={handleToggleCollapse}>Login</a>
                                     </li>
                                     <li className="nav-item">
                                         <a className="nav-link" href="register" onClick={handleToggleCollapse}>Register</a>
