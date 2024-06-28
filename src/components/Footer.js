@@ -27,10 +27,11 @@ export default function Footer() {
           {/* Social Media Links */}
           <div className="col-md-4 mb-3 text-center">
             <h3>Follow Us</h3>
-            <a href="#" className="text-white mr-3"><i className="fab fa-facebook-f"></i> Facebook</a><br />
-            <a href="#" className="text-white mr-3"><i className="fab fa-twitter"></i> Twitter</a><br />
-            <a href="#" className="text-white mr-3"><i className="fab fa-instagram"></i> Instagram</a><br />
-            <a href="#" className="text-white"><i className="fab fa-linkedin-in"></i> LinkedIn</a>
+            <i className="bi bi-facebook" style={{ fontSize: '2rem', color: 'wheat' }}></i>
+            <a href="#" className="text-white mr-3"><i className="fab fa-facebook-f"></i>Facebook</a><br />
+            <a href="#" className="text-white mr-3"><i className="fab fa-twitter"></i>Twitter</a><br />
+            <a href="#" className="text-white mr-3"><i className="fab fa-instagram"></i>Instagram</a><br />
+            <a href="#" className="text-white"><i className="fab fa-linkedin-in"></i>LinkedIn</a>
           </div>
         </div>
       </div>

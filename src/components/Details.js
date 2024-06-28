@@ -238,8 +238,8 @@ export default function Details() {
   var navigate = useNavigate();
 
   return (
-    <div className="container detail">
-      <h2 className='text-center mb-5'>Property Details</h2>
+    <div className="container detail "  style={{marginBottom:`100px`}}>
+      <h2 className='text-center mb-5 options-row'>Property Details</h2>
       {filteredListings.map((listing) => (
         <div key={listing.id}>
           <div className="row">

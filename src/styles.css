@@ -56,15 +56,15 @@ nav {
 }
 
 .hero {
-  position: relative; /* Establishes positioning context */
+  position: relative; 
 }
 
-.carousel {
-  position: absolute; /* Position the carousel absolutely */
-  top: 0; /* Align to the top of the hero section */
-  left: 0; /* Align to the left of the hero section */
-  width: 100%; /* Make the carousel span the full width of the hero section */
-  z-index: -1; /* Set z-index to position the carousel behind other content */
+.car {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  z-index: -1; 
 }
 
 .search-background {
@@ -106,6 +106,7 @@ footer {
   padding: 20px 0;
   margin-top: 500px !important;
 }
+
 html {
   scroll-behavior: smooth;
 }
@@ -183,6 +184,11 @@ footer .row > div {
   align-items: center;
   height: 100vh;
   background-color: #f4f4f4;
+}
+
+.loginContainer{
+  margin-top: 50px;
+  margin-bottom: 100px !important;
 }
 
 /* Styling for the login form */
@@ -286,12 +292,7 @@ footer .row > div {
 }
 
 .area1 {
-  margin-top: 20px;
-}
-
-.drop {
-  /* margin-left: 430px !important; */
-  width: 370px !important;
+  /* margin-top: 20px; */
 }
 
 .link {
@@ -309,27 +310,23 @@ footer .row > div {
 
 .options-row {
   margin-top: 100px !important;
-  margin-bottom: 25px !important;
   background-color: #aaaaaa;
-  /* padding-left: 100px; */
-  height: 100px !important;
-  padding-top: 30px;
-  padding-left: 115px;
-  font-size: large !important;
+  padding-top: 22px;
+  padding-bottom: 22px;
 }
 
 .options-row .btn{
   font-size: 20px !important;
 }
 
-.row-rent h2{
+/* .row-rent h2{
   margin-left: -20px !important;
-}
+} */
 
 .options-row .row .col-md-3 .link {
   /* border: solid !important; */
-  margin-top: 10px;
-  margin-left: 90px;
+  /* margin-top: 10px;
+  margin-left: 90px; */
 }
 
 .dropdown1 {
@@ -338,14 +335,14 @@ footer .row > div {
 }
 
 .list {
-  padding: 30px;
-  max-height: 500px !important;
-  text-align: center;
+  /* padding: 30px; */
+  /* max-height: 500px !important; */
+  /* text-align: center; */
 }
 
 .listImg {
   max-width: 410px;
-  max-height: 150px;
+  max-height: 180px;
 }
 
 .list-box {
@@ -365,16 +362,17 @@ footer .row > div {
 .list .card-body {
   background-color: #f8f9fa; /* Light gray background */
   border: 1px solid #ddd; /* Light gray border */
-  padding: 20px; /* Some padding */
+  /* padding: 20px; */
+  text-align: center;
 }
 
-.list .card-body .card-text {
+/* .list .card-body .card-text {
   font-size: 20px;
 }
 
 .list .card-body .card-title {
   font-size: 20px;
-}
+} */
 
 /* Profile */
 
@@ -421,24 +419,40 @@ footer .row > div {
 }
 
 @media screen and (max-width: 699px) and (min-width: 414px) {
+
   .link {
     font-size: 20px !important;
   }
 
   .carouselImg {
-    /* margin-left: 20px !important; */
-    max-width: 530px !important;
+    max-width: 699px !important;
     height: 350px !important;
   }
 
   .hero-content {
-    margin-top: 60px !important;
-    height: 250px !important;
+    margin-top: 70px !important;
+  }
+
+  .hero-content h2{
+    font-size: 20px;
+  }
+
+  .hero-content p{
+    font-size: 15px;
   }
 
   .hero {
-    /* margin-top: 120px !important; */
+
     height: 350px;
+  }
+
+  #search-input{
+    width: 210px !important;
+  }
+  
+  .hero-content .search-background {
+    width: 350px;
+    height: 80px !important;
   }
 
   nav {
@@ -447,71 +461,41 @@ footer .row > div {
 
   .options-row {
     margin-top: 80px;
-    /* height: 80px !important; */
     color: #ced4da;
-    padding-top: 20px;
-    padding-left: 7px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    /* padding-left: 16px; */
   }
 
   .options-row .btn{
-    font-size: 15px !important;
+    font-size: 14px !important;
   }
 
   .options-row .col-md-3 {
-    max-width: 30px;
-  }
-
-  .options-row .row .col-md-3 {
-    width: 300px !important;
-    margin-left: 20px;
-    padding-right: 70px;
-    text-align: center !important;
-    padding-left: 10px !important;
-  }
-
-  .options-row .row .col-md-3 .link {
-    /* border: solid !important; */
-    margin-top: 10px;
-    margin-left: 0px;
+    width: 24.5% !important;
   }
 
   .rent-type {
     margin-bottom: 20px !important;
   }
 
-  .row-rent2 {
-    height: 100px !important;
-    margin-bottom: 5px !important;
-  }
-
   nav {
     padding: 3px !important;
   }
+  
   .f {
     width: 450px !important;
     text-align: center !important;
   }
+
   .list {
-    width: 200px;
-    max-height: 300px;
+    max-width: 49.5%;
     text-align: center;
   }
 
   .listImg {
     max-width: 230px;
     height: 100px !important;
-  }
-
-  .card-body .card-title {
-    font-size: 14px !important;
-  }
-
-  .card-body .card-text {
-    font-size: 10px !important;
-  }
-
-  .card-body .btn {
-    font-size: 11px !important;
   }
 
   .drop {
@@ -521,21 +505,13 @@ footer .row > div {
     margin-right: 15px !important;
   }
 
-  .area1 {
-    margin-top: 0px;
-  }
-
   .area {
-    width: 330px !important;
     margin-top: 0px;
+    margin-bottom: 10px !important;
   }
 
-  .area2 {
-    margin-top: -10px !important;
-  }
-
-  .area3 {
-    margin-top: 10px !important;
+  .area2{
+    margin-top: 0px;
   }
 
   /* detail */
@@ -559,9 +535,9 @@ footer .row > div {
     } */
 
     .loginContainer{
-        margin-top: 150px;
-        margin-bottom: 100px !important;
-      }
+      margin-top: 50px;
+      margin-bottom: 100px !important;
+    }
 }
 
 @media screen and (max-width: 992px) and (min-width: 800px) {
@@ -571,7 +547,7 @@ footer .row > div {
 
   .carouselImg {
     /* margin-left: 20px !important; */
-    width: 798px !important;
+    max-width: 992px !important;
     height: 450px !important;
   }
 
@@ -591,11 +567,10 @@ footer .row > div {
 
   .options-row {
     margin-top: 80px;
-    /* height: 80px !important; */
     color: #ced4da;
-    padding-top: 20px;
-    padding-left: 7px;
-    width: 640px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    /* padding-left: 16px; */
   }
 
   .options-row .btn{
@@ -603,34 +578,11 @@ footer .row > div {
   }
 
   .options-row .col-md-3 {
-    max-width: 30px;
-  }
-
-  .options-row .row .col-md-3 {
-    width: 300px !important;
-    margin-left: 36px;
-    padding-right: 70px;
-    text-align: center !important;
-    padding-left: 35px !important;
-  }
-
-  .options-row .row .col-md-3 .link {
-    /* border: solid !important; */
-    margin-top: 10px;
-    margin-left: 0px;
-  }
-
-  .rent-type {
-    margin-bottom: 20px !important;
+    max-width: 25%;
   }
 
   .row-rent h2{
     margin-left: 0px !important;
-  }
-
-  .row-rent2 {
-    height: 100px !important;
-    margin-bottom: 5px !important;
   }
 
   nav {
@@ -641,23 +593,12 @@ footer .row > div {
     text-align: center !important;
   }
   .list {
-    margin-left: 110px;
-    width: 500px;
-    max-height: 300px;
-    text-align: center;
+    width: 50%;
   }
 
   .listImg {
-    max-width: 438px;
-    max-height: 400px;
-  }
-
-  .card-body .card-title {
-    font-size: 18px !important;
-  }
-
-  .card-body .card-text {
-    font-size: 15px !important;
+    width: 322px;
+    height: 400px;
   }
 
   .drop {
@@ -672,21 +613,10 @@ footer .row > div {
   }
 
   .area {
-    width: 280px !important;
+    /* width: 280px !important; */
     margin-top: 5px;
   }
 
-  .area4 {
-    margin-left: 0px !important;
-  }
-
-  .area2 {
-    /* margin-top: -10px !important; */
-  }
-
-  .area3 {
-    /* margin-top: 10px !important; */
-  }
 
   /* detail */
 
@@ -704,10 +634,6 @@ footer .row > div {
     height: 250px !important;
   }
 
-  /* .back{
-        margin-left: 92px !important;
-    } */
-
   /* registration form */
   .registration-form {
     margin: 70px;
@@ -720,7 +646,7 @@ footer .row > div {
   }
 
   .loginContainer{
-    margin-top: 150px;
+    margin-top: 50px;
     margin-bottom: 100px !important;
   }
 }
@@ -748,7 +674,7 @@ footer .row > div {
     font-size: 15px;
   }
   .hero-content .search-background {
-    width: 300px;
+    max-width: 413px  !important;
     height: 60px !important;
   }
 
@@ -758,14 +684,14 @@ footer .row > div {
   }
 
   .FormControl {
-    font-size: 12px; /* Decrease font size */
-    padding: 5px 10px; /* Adjust padding */
-    width: 180px; /* Adjust width as needed */
+    font-size: 12px;
+    padding: 5px 10px; 
+    width: 180px; 
   }
   
   .bttt {
-    font-size: 12px; /* Decrease font size */
-    padding: 5px 10px; /* Adjust padding */
+    font-size: 12px; 
+    padding: 5px 10px; 
   }
   
   /* Adjust placeholder text size */
@@ -783,110 +709,53 @@ footer .row > div {
 
   .options-row {
     margin-top: 80px;
-    height: 80px !important;
     color: #ced4da;
-    padding-top: 9px;
-    padding-left: 11px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    /* padding-left: 16px; */
   }
 
   .options-row .btn{
-    font-size: 15px !important;
+    font-size: 14px !important;
   }
 
   .options-row .col-md-3 {
-    max-width: 90px;
-  }
-
-  .options-row .row .col-md-3 {
-    width: 300px !important;
-    /* margin-left: 15px; */
-    /* padding-right: 70px; */
-    text-align: center !important;
-    padding-left: 19px !important;
-  }
-
-  .options-row .row .col-md-3 .link {
-    /* border: solid !important; */
-    margin-top: 10px;
-    margin-left: 2px;
+    width: 24% !important;
   }
 
   nav {
     padding: 3px !important;
   }
+
   .f {
     width: 450px !important;
     text-align: center !important;
   }
+
   .list {
-    width: 180px;
-    max-height: 300px;
+    max-width: 49.5%;
     text-align: center;
   }
 
   .listImg {
-    max-width: 230px;
-    height: 80px;
-  }
-
-  .card-body .card-title {
-    font-size: 14px !important;
-    margin-top: -10px !important;
-  }
-
-  .card-body .card-text {
-    font-size: 9px !important;
-  }
-
-  .card-body .btn {
-    font-size: 9px !important;
-  }
-
-  .drop {
-    margin-top: 0px;
-    margin-left: -10px !important;
-    width: 310px !important;
-    margin-right: 15px !important;
-  }
-
-  .drop2{
-    width: 280px !important;
-  }
-
-  .area1 {
-    margin-top: 0px;
+    width: 148px;
+    height: 135px;
   }
 
   .area {
-    width: 310px !important;
     margin-top: 0px;
-    margin-left: -10px !important;
+    margin-bottom: 10px !important;
   }
 
-  .area2 {
-    /* margin-top: -10px !important; */
-  }
-
-  .area3 {
-    margin-top: 20px !important;
-  }
-
-  .row-rent {
-    height: 50px !important;
-  }
-
-  .row-rent h2{
-    margin-left: 0px !important;
-  }
-
-  .rent-type {
-    margin-bottom: 20px !important;
+  .area2{
+    margin-top: 0px;
   }
 
   .image-6 {
     width: 250px !important;
     height: 150px !important;
   }
+
   .detail {
     margin-top: 90px !important;
     text-align: center;
@@ -896,12 +765,8 @@ footer .row > div {
     margin-top: 50px !important;
   }
 
-  /* .back{
-        margin-left: 92px !important;
-    } */
-
-    .loginContainer{
-        margin-top: 150px;
-        margin-bottom: 100px !important;
-      }
+  .loginContainer{
+    margin-top: 50px;
+    margin-bottom: 100px !important;
+  }
 }

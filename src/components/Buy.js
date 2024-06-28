@@ -300,7 +300,7 @@ export default function Buy() {
       <div className="container dropdown1">
         <h2 className="text-center">Filter</h2>
         <div className="row">
-          <div className="col-md-6" style={{ paddingLeft: "45px" }}>
+          <div className="col-md-6">
             <select
               className="form-select area rent-type"
               name="propertyType"
@@ -318,7 +318,7 @@ export default function Buy() {
               <option value="Penthouse">Penthouse</option>
             </select>
           </div>
-          <div className="col-md-6" style={{ paddingLeft: "45px" }}>
+          <div className="col-md-6">
             <input
               type="text"
               className="form-control area"
@@ -368,7 +368,7 @@ export default function Buy() {
               </div>
             )}
           </div>
-          <div className="col-md-6" style={{ paddingLeft: "45px" }}>
+          <div className="col-md-6">
             <input
               type="text"
               className="form-control area"
@@ -419,7 +419,7 @@ export default function Buy() {
             )}
           </div>
 
-          <div className="col-md-6" style={{ paddingLeft: "45px" }}>
+          <div className="col-md-6">
             <select
               className="form-select area"
               name="priceRange"
@@ -441,10 +441,10 @@ export default function Buy() {
         </div>
       </div>
 
-      <div className="container mt-4 list-box">
+      <div className="container mt-4 list-box p-4">
         <div className="row">
           {filteredListings.map((listing) => (
-            <div className="col-md-4 mb-4 list" key={listing.id}>
+            <div className="col-md-4 mb-4 mt-4 list" key={listing.id}>
               <div className="card">
                 <img
                   src={listing.img}

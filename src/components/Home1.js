@@ -325,7 +325,7 @@ export default function Home1() {
 
   return (
     <div>
-      <div className=" container options-row row-rent2">
+      <div className=" container options-row text-center">
         <div className="row">
           <div className="col-md-3">
             <button
@@ -370,10 +370,10 @@ export default function Home1() {
         </div>
       </div>
 
-      <div className="container dropdown1">
+      <div className="container dropdown1 text-center">
         <h2 className="text-center">Filter</h2>
-        <div className="row">
-          <div className="col-md-6" style={{ paddingLeft: "45px" }}>
+        <div className="row text-center">
+          <div className="col-md-6">
             <select
               className="form-select area"
               name="type"
@@ -385,9 +385,9 @@ export default function Home1() {
               <option value="buy">Buy</option>
             </select>
           </div>
-          <div className="col-md-6" style={{ paddingLeft: "45px" }}>
+          <div className="col-md-6">
             <select
-              className="form-select area area3 area4"
+              className="form-select area"
               name="propertyType"
               value={filter.propertyType}
               onChange={handleFilterChange}
@@ -403,10 +403,10 @@ export default function Home1() {
               <option value="Penthouse">Penthouse</option>
             </select>
           </div>
-          <div className="col-md-6" style={{ paddingLeft: "45px" }}>
+          <div className="col-md-6">
             <input
               type="text"
-              className="form-control area area3 area4"
+              className="form-control area"
               placeholder={placeholderCity}
               value={searchCity}
               onChange={(e) => {
@@ -416,7 +416,7 @@ export default function Home1() {
               onClick={() => setDropdownOpen(true)}
             />
             {dropdownOpen && (
-              <div className="dropdown mt-2">
+              <div className="dropdown ">
                 <ul
                   className="dropdown-menu"
                   style={{
@@ -453,7 +453,7 @@ export default function Home1() {
               </div>
             )}
           </div>
-          <div className="col-md-6" style={{ paddingLeft: "45px" }}>
+          <div className="col-md-6">
             <input
               type="text"
               className="form-control area area2"
@@ -466,7 +466,7 @@ export default function Home1() {
               onClick={() => setDropdownOpenArea(true)}
             />
             {dropdownOpenArea && (
-              <div className="dropdown mt-2">
+              <div className="dropdown">
                 <ul
                   className="dropdown-menu"
                   style={{
@@ -504,13 +504,13 @@ export default function Home1() {
             )}
           </div>
 
-          <div className="container">
-            <div className="row">
-              <div className="col-md-4"></div>
-              <div className="col-md-4">
-                <div className="col-md-6" style={{ paddingLeft: "45px" }}>
+          <div className="container text-center">
+            <div className="row text-center">
+              
+              
+                <div className="col-md-12">
                   <select
-                    className="form-select drop drop2"
+                    className="form-select"
                     name="priceRange"
                     value={filter.priceRange}
                     onChange={handleFilterChange}
@@ -527,17 +527,17 @@ export default function Home1() {
                     ))}
                   </select>
                 </div>
-              </div>
-              <div className="col-md-4"></div>
+              
+              
             </div>
           </div>
         </div>
       </div>
 
-      <div className="container mt-4 list-box">
+      <div className="container mt-4 list-box p-4">
         <div className="row">
           {filteredListings.map((listing) => (
-            <div className="col-md-4 mb-4 list" key={listing.id}>
+            <div className="col-md-4 mb-4 mt-4 list" key={listing.id}>
               <div className="card">
                 <img
                   src={listing.img}

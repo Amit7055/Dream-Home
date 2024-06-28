@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div>
       <section className="hero text-white text-center position-relative">
-        <div id="carouselExampleInterval" className="carousel slide" data-bs-ride="carousel">
+        <div id="carouselExampleInterval" className="carousel slide car" data-bs-ride="carousel">
           <div className="carousel-inner">
             <div className="carousel-item active" data-bs-interval="4000">
               <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg" className="d-block w-100 carouselImg" alt="..." />
@@ -37,25 +37,25 @@ export default function Home() {
         </div>
       </section>
 
-      <section ref={servicesRef} id="services" className={`services py-5 ${servicesInView ? 'animate__animated animate__fadeInUp' : ''}`}>
+      <section ref={servicesRef} id="services" className={` services py-5 ${servicesInView ? 'animate__animated animate__fadeInUp' : ''}`}>
         <div className="container">
-          <h2 className="text-center mb-5">Services</h2>
+          <h2 className="text-center mb-5 mt-4"><b>Services</b></h2>
           <div className="row">
             <div className="col-md-4 text-center mb-4">
               <div className="service">
-                <h3>Buying</h3>
+                <h3><b>Buying</b></h3>
                 <p>Explore a wide range of properties available for purchase.</p>
               </div>
             </div>
             <div className="col-md-4 text-center mb-4">
               <div className="service">
-                <h3>Selling</h3>
+                <h3><b>Selling</b></h3>
                 <p>List your property and reach potential buyers quickly.</p>
               </div>
             </div>
             <div className="col-md-4 text-center mb-4">
               <div className="service">
-                <h3>Renting</h3>
+                <h3><b>Renting</b></h3>
                 <p>Find rental properties that fit your needs and budget.</p>
               </div>
             </div>
