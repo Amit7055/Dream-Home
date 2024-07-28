@@ -418,7 +418,7 @@ footer .row > div {
   margin-bottom: 50px !important;
 }
 
-@media screen and (max-width: 699px) and (min-width: 414px) {
+@media screen and (max-width: 799px) and (min-width: 414px) {
 
   .link {
     font-size: 20px !important;
