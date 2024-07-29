@@ -323,9 +323,14 @@ export default function Home1() {
     )
   ).filter((area) => area.toLowerCase().includes(searchArea.toLowerCase()));
 
+  const show = (value)=>{
+      setDropdownOpen(value);
+      setDropdownOpenArea(value);
+  }
+
   return (
     <div>
-      <div className=" container options-row text-center">
+      <div className=" container options-row text-center" onClick={() => show(false)}>
         <div className="row">
           <div className="col-md-3">
             <button
@@ -370,10 +375,10 @@ export default function Home1() {
         </div>
       </div>
 
-      <div className="container dropdown1 text-center">
-        <h2 className="text-center">Filter</h2>
+      <div className="container dropdown1 text-center" >
+        <h2 className="text-center" onClick={() => show(false)}>Filter</h2>
         <div className="row text-center">
-          <div className="col-md-6">
+          <div className="col-md-6" onClick={() => show(false)}>
             <select
               className="form-select area"
               name="type"
@@ -385,7 +390,7 @@ export default function Home1() {
               <option value="buy">Buy</option>
             </select>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-6" onClick={() => show(false)}> 
             <select
               className="form-select area"
               name="propertyType"
@@ -403,7 +408,7 @@ export default function Home1() {
               <option value="Penthouse">Penthouse</option>
             </select>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-6" onClick={() => setDropdownOpenArea(false)}>
             <input
               type="text"
               className="form-control area"
@@ -411,9 +416,9 @@ export default function Home1() {
               value={searchCity}
               onChange={(e) => {
                 setSearchCity(e.target.value);
-                setDropdownOpen(true);
+                 setDropdownOpen(true);
               }}
-              onClick={() => setDropdownOpen(true)}
+              onClick={() => setDropdownOpen(!dropdownOpen)}
             />
             {dropdownOpen && (
               <div className="dropdown ">
@@ -453,7 +458,7 @@ export default function Home1() {
               </div>
             )}
           </div>
-          <div className="col-md-6">
+          <div className="col-md-6" onClick={() => setDropdownOpen(false)}  >
             <input
               type="text"
               className="form-control area area2"
@@ -463,7 +468,7 @@ export default function Home1() {
                 setSearchArea(e.target.value);
                 setDropdownOpenArea(true);
               }}
-              onClick={() => setDropdownOpenArea(true)}
+              onClick={() => setDropdownOpenArea(!dropdownOpenArea)}
             />
             {dropdownOpenArea && (
               <div className="dropdown">
@@ -504,10 +509,8 @@ export default function Home1() {
             )}
           </div>
 
-          <div className="container text-center">
+          <div className="container text-center" onClick={() => show(false)}>
             <div className="row text-center">
-              
-              
                 <div className="col-md-12">
                   <select
                     className="form-select"
@@ -527,14 +530,12 @@ export default function Home1() {
                     ))}
                   </select>
                 </div>
-              
-              
             </div>
           </div>
         </div>
       </div>
 
-      <div className="container mt-4 list-box p-4">
+      <div className="container mt-4 list-box p-4" onClick={() => show(false)}>
         <div className="row">
           {filteredListings.map((listing) => (
             <div className="col-md-4 mb-4 mt-4 list" key={listing.id}>
