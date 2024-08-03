@@ -290,9 +290,14 @@ export default function Buy() {
     )
   ).filter((area) => area.toLowerCase().includes(searchArea.toLowerCase()));
 
+  const show = (value)=>{
+    setDropdownOpen(value);
+    setDropdownOpenArea(value);
+}
+
   return (
     <div>
-      <div className=" container options-row row-rent">
+      <div className=" container options-row row-rent" onClick={() => show(false)}>
         <div className="row">
           <h2 className="text-center">Buy Properties</h2>
         </div>
@@ -300,7 +305,7 @@ export default function Buy() {
       <div className="container dropdown1">
         <h2 className="text-center">Filter</h2>
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-md-6" onClick={() => show(false)}>
             <select
               className="form-select area rent-type"
               name="propertyType"
@@ -318,7 +323,7 @@ export default function Buy() {
               <option value="Penthouse">Penthouse</option>
             </select>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-6" onClick={() => setDropdownOpenArea(false)}>
             <input
               type="text"
               className="form-control area"
@@ -328,7 +333,7 @@ export default function Buy() {
                 setSearchCity(e.target.value);
                 setDropdownOpen(true);
               }}
-              onClick={() => setDropdownOpen(true)}
+              onClick={() => setDropdownOpen(!dropdownOpen)}
             />
             {dropdownOpen && (
               <div className="dropdown mt-2">
@@ -368,7 +373,7 @@ export default function Buy() {
               </div>
             )}
           </div>
-          <div className="col-md-6">
+          <div className="col-md-6" onClick={() => setDropdownOpen(false)}>
             <input
               type="text"
               className="form-control area"
@@ -378,7 +383,7 @@ export default function Buy() {
                 setSearchArea(e.target.value);
                 setDropdownOpenArea(true);
               }}
-              onClick={() => setDropdownOpenArea(true)}
+              onClick={() => setDropdownOpenArea(!dropdownOpenArea)}
             />
             {dropdownOpenArea && (
               <div className="dropdown mt-2">
@@ -419,7 +424,7 @@ export default function Buy() {
             )}
           </div>
 
-          <div className="col-md-6">
+          <div className="col-md-6" onClick={() => show(false)}>
             <select
               className="form-select area"
               name="priceRange"
@@ -441,7 +446,7 @@ export default function Buy() {
         </div>
       </div>
 
-      <div className="container mt-4 list-box p-4">
+      <div className="container mt-4 list-box p-4" onClick={() => show(false)}>
         <div className="row">
           {filteredListings.map((listing) => (
             <div className="col-md-4 mb-4 mt-4 list" key={listing.id}>
