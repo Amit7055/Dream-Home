@@ -285,6 +285,77 @@ footer .row > div {
   color: #0056b3;
 }
 
+
+/* About Us */
+.about-us {
+  background-color: #ffffff;
+}
+
+.aboutUsImg {
+  width: 50px !important;
+  height: 30px !important;
+}
+
+.about-symbol{
+  font-size: 35px !important;
+}
+
+/* Servies */
+
+.c1 {
+  line-height: 1.6;
+  color: #333;
+  margin-top: 100px !important;
+}
+.serviceProperties {
+  background: #f4f4f4;
+  border: 1px solid #ddd;
+  margin: 20px 0;
+  padding: 20px;
+  border-radius: 5px;
+}
+.c2 {
+  background: #333;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+}
+
+/* property-Feature */
+
+.property-Feature{
+  margin-top: 100px !important;
+}
+
+.property-card {
+  margin-bottom: 20px;
+}
+.property-image {
+  height: 200px;
+  object-fit: cover;
+}
+
+/* contact */
+
+.contactUs{
+  margin-top: 8% !important;
+}
+
+.contact-section {
+  padding: 60px 0;
+}
+.map {
+  height: 400px;
+  width: 100%;
+  margin-top: 20px;
+}
+.contact-info {
+  background: #f4f4f4;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
 /* Home1 */
 
 .area {

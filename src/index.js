@@ -17,6 +17,10 @@ import Buy from "./components/Buy";
 import Details from "./components/Details";
 import Appointment from "./components/Appointment";
 import BuyerForm from "./components/BuyerForm";
+import AboutUs from "./components/AboutUs";
+import Property from "./components/Property";
+import Servies from "./components/Servies";
+import Contact from "./components/Contact";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -37,6 +41,10 @@ root.render(
           <Route path="detail" element={<Details />}/>
           <Route path="appointment" element={<Appointment />}/>
           <Route path="buyerForm" element={<BuyerForm />}/>
+          <Route path="aboutus" element={<AboutUs />}/>
+          <Route path="property" element={<Property />}/> 
+          <Route path="service" element={<Servies />}/> 
+          <Route path="contact" element={<Contact />}/> 
         </Route>
       </Routes>
    </AuthProvider>

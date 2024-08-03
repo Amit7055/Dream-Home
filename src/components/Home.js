@@ -1,6 +1,7 @@
 import React from 'react';
 import 'animate.css';
 import { useInView } from 'react-intersection-observer';
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 export default function Home() {
   const [heroRef, heroInView] = useInView({ triggerOnce: true });
@@ -39,7 +40,7 @@ export default function Home() {
 
       <section ref={servicesRef} id="services" className={` services py-5 ${servicesInView ? 'animate__animated animate__fadeInUp' : ''}`}>
         <div className="container">
-          <h2 className="text-center mb-5 mt-4"><b>Services</b></h2>
+          <Link to="service"><h2 className="text-center mb-5 mt-4"><b>Services</b></h2></Link>
           <div className="row">
             <div className="col-md-4 text-center mb-4">
               <div className="service">
@@ -65,7 +66,7 @@ export default function Home() {
 
       <section ref={propertiesRef} id="properties" className={`properties py-5 ${propertiesInView ? 'animate__animated animate__fadeInUp' : ''}`}>
         <div className="container">
-          <h2 className="text-center mb-5">Featured Properties</h2>
+          <Link to="property"><h2 className="text-center mb-5">Featured Properties</h2></Link>
           <div className="row">
             <div className="col-md-4 mb-4 text-center">
               <div className="card">
@@ -111,7 +112,7 @@ export default function Home() {
               </video>
             </div>
             <div className="col-md-6 text-center">
-              <h2>About Us</h2>
+              <Link to="aboutus" ><h2>About Us</h2></Link>
               <p>Dream Home is dedicated to making the property market more accessible and efficient for everyone involved. Our platform provides a seamless experience for buying, selling, and renting properties with innovative features and enhanced security measures.</p>
             </div>
           </div>

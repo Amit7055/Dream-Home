@@ -18,20 +18,19 @@ export default function Footer() {
             <h3>Quick Links</h3>
             <ul className="list-unstyled">
               <li><a href="#" className="text-white">Home</a></li>
-              <li><a href="#services" className="text-white">Services</a></li>
-              <li><a href="#about" className="text-white">About Us</a></li>
-              <li><a href="#properties" className="text-white">Properties</a></li>
-              <li><a href="#" className="text-white">Contact</a></li>
+              <li><a href="service" className="text-white">Services</a></li>
+              <li><a href="aboutus" className="text-white">About Us</a></li>
+              <li><a href="property" className="text-white">Properties</a></li>
+              <li><a href="contact" className="text-white">Contact</a></li>
             </ul>
           </div>
-          {/* Social Media Links */}
+          {/* Social Media*/}
           <div className="col-md-4 mb-3 text-center">
             <h3>Follow Us</h3>
-            <i className="bi bi-facebook" style={{ fontSize: '2rem', color: 'wheat' }}></i>
             <a href="#" className="text-white mr-3"><i className="fab fa-facebook-f"></i>Facebook</a><br />
             <a href="#" className="text-white mr-3"><i className="fab fa-twitter"></i>Twitter</a><br />
             <a href="#" className="text-white mr-3"><i className="fab fa-instagram"></i>Instagram</a><br />
-            <a href="#" className="text-white"><i className="fab fa-linkedin-in"></i>LinkedIn</a>
+            <a href="#" className="text-white mr-3"><i className="fab fa-linkedin-in"></i>LinkedIn</a>
           </div>
         </div>
       </div>
