@@ -1,14 +1,21 @@
-import React, { useState, useContext, useRef } from 'react';
-import { AuthContext } from '../context/AuthContext';
+import React, { useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import emailjs from '@emailjs/browser';
 
 export default function Register() {
-  const { registration } = useContext(AuthContext);
   const navigate = useNavigate();
+  const form = useRef();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [phoneNo, setPhoneNo] = useState('');
+  const [address, setAddress] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [pincode, setPincode] = useState('');
   const [error, setError] = useState('');
   const [verify, setVerify] = useState(false);
   const [verifyCode, setVerifyCode] = useState('');
@@ -16,11 +23,12 @@ export default function Register() {
   const [emailSent, setEmailSent] = useState(false);
   const [verificationSuccess, setVerificationSuccess] = useState(false);
 
-  const form = useRef();
-
   const usernamePattern = /^(?:[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)*)$/;
   const passwordPattern = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\-]).{4,8}$/;
   const emailPattern = /^([a-zA-Z0-9]([a-zA-Z0-9_\.]+)?[a-zA-Z0-9])@(([a-zA-Z0-9]([a-zA-Z0-9\-]+)?[a-zA-Z0-9])\.([a-zA-Z]{2,})(\.[a-zA-Z]{2,})?)$/;
+  const phonePattern = /^\d{10}$/; // Exactly 10 digits
+  const pincodePattern = /^\d{6}$/; // Exactly 6 digits
+  const wordPattern = /^[a-zA-Z\s]+$/; // Only letters and spaces
 
   const generateVerificationCode = () => {
     const code = Math.floor(100000 + Math.random() * 900000).toString();
@@ -29,15 +37,15 @@ export default function Register() {
   };
 
   const sendVerificationEmail = (code) => {
-    form.current.verification_code.value = code; // Set the verification code in the hidden input field
-    form.current.to_email.value = email; // Set the user's email in the hidden input field
-    form.current.user_name.value = username; // Set the user's name in the hidden input field
-    form.current.from_name.value = 'Dream Home'; // Set the sender's name in the hidden input field
+    form.current.verification_code.value = code;
+    form.current.to_email.value = email; 
+    form.current.user_name.value = username; 
+    form.current.from_name.value = 'Dream Home'; 
 
     emailjs.sendForm('service_v26g5ji', 'template_sa0jtrx', form.current, 'r0WFbtk28AelP5tlp')
       .then((response) => {
         console.log('Email sent successfully:', response.status, response.text);
-        setEmailSent(true); // Indicate that the email was sent successfully
+        setEmailSent(true);
       }, (err) => {
         console.error('Failed to send email:', err.text);
         setError('Failed to send verification email. Please try again.');
@@ -46,7 +54,8 @@ export default function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Validate username, email, and password
+    
+    // Validate fields
     if (!usernamePattern.test(username)) {
       setError('Invalid username format');
       return;
@@ -59,28 +68,73 @@ export default function Register() {
       setError('Invalid password format');
       return;
     }
+    if (!phonePattern.test(phoneNo)) {
+      setError('Phone number must be exactly 10 digits');
+      return;
+    }
+    if (!pincodePattern.test(pincode)) {
+      setError('Pincode must be exactly 6 digits');
+      return;
+    }
+    if (!wordPattern.test(city)) {
+      setError('City must contain only letters');
+      return;
+    }
+    if (!wordPattern.test(state)) {
+      setError('State must contain only letters');
+      return;
+    }
 
+    // Clear error on successful validation
+    setError('');
+    
     const code = generateVerificationCode();
     sendVerificationEmail(code);
-    setVerify(true); // Show verification input
+    setVerify(true);
   };
 
-  const handleVerify = (e) => {
+  const handleVerify = async (e) => {
     e.preventDefault();
+
     if (verifyCode === generatedCode) {
       setVerificationSuccess(true);
-      setTimeout(() => {
-        if (registration(email, password, username)) {
-          console.log('User registered successfully');
-          setVerify(false);
-          navigate("/login");
-        } else {
-          setError('Registration failed');
+      setTimeout(async () => {
+        try {
+          const newUser = {
+            firstName,
+            lastName,
+            email,
+            phoneNo,
+            address,
+            city,
+            state,
+            pincode,
+            userName: username,
+            password
+          };
+
+          const response = await axios.post('http://localhost:9999/user/add', newUser);
+          if (response.status === 200) {
+            console.log('User registered successfully');
+            setVerify(false);
+            navigate("/login");
+          } else {
+            setError('Registration failed');
+          }
+        } catch (error) {
+          console.error('Error registering user:', error);
+          setError('An error occurred during registration. Please try again.');
         }
       }, 2000); // Delay navigation for 2 seconds
     } else {
       setError('Invalid verification code');
     }
+  };
+
+  // Function to clear error when user starts typing
+  const handleInputChange = (setter) => (e) => {
+    setter(e.target.value);
+    if (error) setError(''); // Clear error when user changes input
   };
 
   return (
@@ -94,6 +148,30 @@ export default function Register() {
               {!verify && (
                 <>
                   <div className="form-group">
+                    <label htmlFor="firstName">First Name</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="firstName"
+                      placeholder="Enter first name"
+                      value={firstName}
+                      onChange={handleInputChange(setFirstName)}
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="lastName">Last Name</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="lastName"
+                      placeholder="Enter last name"
+                      value={lastName}
+                      onChange={handleInputChange(setLastName)}
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
                     <label htmlFor="username">Username</label>
                     <input
                       type="text"
@@ -102,7 +180,7 @@ export default function Register() {
                       name="user_name"
                       placeholder="Enter username"
                       value={username}
-                      onChange={(e) => setUsername(e.target.value)}
+                      onChange={handleInputChange(setUsername)}
                       required
                     />
                   </div>
@@ -115,7 +193,67 @@ export default function Register() {
                       name="to_email"
                       placeholder="Enter email"
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={handleInputChange(setEmail)}
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="phoneNo">Phone Number</label>
+                    <input
+                      type="tel"
+                      className="form-control"
+                      id="phoneNo"
+                      placeholder="Enter phone number"
+                      value={phoneNo}
+                      onChange={handleInputChange(setPhoneNo)}
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="address">Address</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="address"
+                      placeholder="Enter address"
+                      value={address}
+                      onChange={handleInputChange(setAddress)}
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="city">City</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="city"
+                      placeholder="Enter city"
+                      value={city}
+                      onChange={handleInputChange(setCity)}
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="state">State</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="state"
+                      placeholder="Enter state"
+                      value={state}
+                      onChange={handleInputChange(setState)}
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="pincode">Pincode</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="pincode"
+                      placeholder="Enter pincode"
+                      value={pincode}
+                      onChange={handleInputChange(setPincode)}
                       required
                     />
                   </div>
@@ -128,7 +266,7 @@ export default function Register() {
                       name="password"
                       placeholder="Password"
                       value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      onChange={handleInputChange(setPassword)}
                       required
                     />
                   </div>
@@ -165,3 +303,4 @@ export default function Register() {
     </div>
   );
 }
+

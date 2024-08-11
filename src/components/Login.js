@@ -1,9 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function Login() {
-  const { loginin, verifyUser } = useContext(AuthContext);
+  const { loginin } = useContext(AuthContext);
   const navigate = useNavigate(); 
 
   const [username, setUsername] = useState('');
@@ -11,11 +12,22 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (await verifyUser(username, password)) {
-      await loginin(username, password);
-      navigate("/home"); 
-    } else {
-     await alert('Invalid username or password');
+
+    try {
+      const response = await axios.get('http://localhost:9999/user/all');
+      const users = response.data;
+      
+      const user = users.find(user => user.userName === username && user.password === password);
+
+      if (user) {
+        loginin()
+        navigate("/home");
+      } else {
+        alert('Invalid username or password');
+      }
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+      alert('An error occurred. Please try again later.');
     }
   };
 
