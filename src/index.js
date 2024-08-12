@@ -21,6 +21,9 @@ import AboutUs from "./components/AboutUs";
 import Property from "./components/Property";
 import Servies from "./components/Servies";
 import Contact from "./components/Contact";
+import LandlordTenantSection from "./components/LandlordTenantSection";
+import Tenant from "./components/Tenant";
+import ViewAppointments from "./components/ViewAppointments";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -44,7 +47,10 @@ root.render(
           <Route path="aboutus" element={<AboutUs />}/>
           <Route path="property" element={<Property />}/> 
           <Route path="service" element={<Servies />}/> 
-          <Route path="contact" element={<Contact />}/> 
+          <Route path="contact" element={<Contact />}/>
+          <Route path="landlordtenant" element={<LandlordTenantSection />}/>
+          <Route path="tenant" element={<Tenant />}/>
+          <Route path="viewappointments" element={<ViewAppointments />}/>
         </Route>
       </Routes>
    </AuthProvider>

@@ -4,19 +4,19 @@ body {
 
 /* animations.css */
 .animated {
-  animation-duration: 4s; 
+  animation-duration: 4s;
 }
 
 .animate__fadeIn {
-  animation-duration: 4s; 
+  animation-duration: 4s;
 }
 
 .animate__fadeInUp {
-  animation-duration: 4s; 
+  animation-duration: 4s;
 }
 
-.animate__fadeInUp{
-  animation-duration: 4s; 
+.animate__fadeInUp {
+  animation-duration: 4s;
 }
 
 .hero {
@@ -56,15 +56,15 @@ nav {
 }
 
 .hero {
-  position: relative; 
+  position: relative;
 }
 
 .car {
-  position: absolute; 
-  top: 0; 
-  left: 0; 
-  width: 100%; 
-  z-index: -1; 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
 }
 
 .search-background {
@@ -131,46 +131,62 @@ footer a.text-white:hover {
   text-decoration: underline;
 }
 
-footer .row > div {
+footer .row>div {
   text-align: left;
 }
 
 /* Testimonials Section */
 .testimonials {
-  background-color: #f8f9fa; /* Set background color */
-  padding-top: 50px; /* Add top padding */
-  padding-bottom: 50px; /* Add bottom padding */
+  background-color: #f8f9fa;
+  /* Set background color */
+  padding-top: 50px;
+  /* Add top padding */
+  padding-bottom: 50px;
+  /* Add bottom padding */
 }
 
 .testimonials h2 {
-  margin-bottom: 40px; /* Add bottom margin to the heading */
+  margin-bottom: 40px;
+  /* Add bottom margin to the heading */
 }
 
 .testimonials .card {
-  background-color: #fff; /* Set card background color */
-  border: 1px solid #dee2e6; /* Add border */
-  border-radius: 5px; /* Add border radius */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
+  background-color: #fff;
+  /* Set card background color */
+  border: 1px solid #dee2e6;
+  /* Add border */
+  border-radius: 5px;
+  /* Add border radius */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Add shadow */
 }
 
 .testimonials .card-body {
-  padding: 20px; /* Add padding to the card body */
+  padding: 20px;
+  /* Add padding to the card body */
 }
 
 .testimonials .card-title {
-  font-size: 18px; /* Set font size for the author name */
-  margin-bottom: 10px; /* Add bottom margin to the author name */
+  font-size: 18px;
+  /* Set font size for the author name */
+  margin-bottom: 10px;
+  /* Add bottom margin to the author name */
 }
 
 .testimonials .card-text {
-  font-size: 16px; /* Set font size for the testimonial text */
+  font-size: 16px;
+  /* Set font size for the testimonial text */
 }
 
 .testimonials .testimonial-avatar {
-  width: 50px; /* Set width for the small size image */
-  height: 50px; /* Set height for the small size image */
-  border-radius: 50%; /* Add border radius to make it circular */
-  margin-right: 10px; /* Add right margin to the image */
+  width: 50px;
+  /* Set width for the small size image */
+  height: 50px;
+  /* Set height for the small size image */
+  border-radius: 50%;
+  /* Add border radius to make it circular */
+  margin-right: 10px;
+  /* Add right margin to the image */
 }
 
 /* login page */
@@ -186,7 +202,7 @@ footer .row > div {
   background-color: #f4f4f4;
 }
 
-.loginContainer{
+.loginContainer {
   margin-top: 50px;
   margin-bottom: 100px !important;
 }
@@ -296,7 +312,7 @@ footer .row > div {
   height: 30px !important;
 }
 
-.about-symbol{
+.about-symbol {
   font-size: 35px !important;
 }
 
@@ -307,6 +323,7 @@ footer .row > div {
   color: #333;
   margin-top: 100px !important;
 }
+
 .serviceProperties {
   background: #f4f4f4;
   border: 1px solid #ddd;
@@ -314,6 +331,7 @@ footer .row > div {
   padding: 20px;
   border-radius: 5px;
 }
+
 .c2 {
   background: #333;
   color: #fff;
@@ -323,13 +341,14 @@ footer .row > div {
 
 /* property-Feature */
 
-.property-Feature{
+.property-Feature {
   margin-top: 100px !important;
 }
 
 .property-card {
   margin-bottom: 20px;
 }
+
 .property-image {
   height: 200px;
   object-fit: cover;
@@ -337,18 +356,20 @@ footer .row > div {
 
 /* contact */
 
-.contactUs{
+.contactUs {
   margin-top: 8% !important;
 }
 
 .contact-section {
   padding: 60px 0;
 }
+
 .map {
   height: 400px;
   width: 100%;
   margin-top: 20px;
 }
+
 .contact-info {
   background: #f4f4f4;
   padding: 20px;
@@ -386,7 +407,7 @@ footer .row > div {
   padding-bottom: 22px;
 }
 
-.options-row .btn{
+.options-row .btn {
   font-size: 20px !important;
 }
 
@@ -431,8 +452,10 @@ footer .row > div {
 }
 
 .list .card-body {
-  background-color: #f8f9fa; /* Light gray background */
-  border: 1px solid #ddd; /* Light gray border */
+  background-color: #f8f9fa;
+  /* Light gray background */
+  border: 1px solid #ddd;
+  /* Light gray border */
   /* padding: 20px; */
   text-align: center;
 }
@@ -483,11 +506,91 @@ footer .row > div {
   margin-bottom: 50px !important;
 }
 
+.appointment-image{
+  width: 320px !important;
+  height: 220px  !important;
+}
+
+/* viewAppointment */
+/* .viewAppointment{
+  width: 500% !important;
+} */
+
 /* buyerForm */
 .buyerForm {
   margin-top: 120px !important;
   margin-bottom: 50px !important;
 }
+
+/* landlordtenant */
+
+.custom-card-header {
+  background-color: #007bff;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+}
+
+.custom-card-body {
+  text-align: center;
+}
+
+.custom-card {
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.custom-btn {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.custom-btn:hover {
+  background-color: #0056b3;
+  color: #fff;
+}
+
+.custom-container {
+  margin-top: 100px !important;
+  margin-bottom: 100px !important;
+}
+
+/* Tenant */
+
+.unique-card {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.unique-card-title {
+  color: #007bff;
+}
+
+.unique-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.unique-btn:hover {
+  background-color: #0056b3;
+}
+
+.unique-form-control {
+  resize: none;
+}
+
+.unique-date-input {
+  border-radius: 5px;
+  padding: 0.375rem 0.75rem;
+}
+
+.unique-footer {
+  background-color: #343a40;
+  color: white;
+}
+
+
 
 @media screen and (max-width: 799px) and (min-width: 414px) {
 
@@ -504,11 +607,11 @@ footer .row > div {
     margin-top: 70px !important;
   }
 
-  .hero-content h2{
+  .hero-content h2 {
     font-size: 20px;
   }
 
-  .hero-content p{
+  .hero-content p {
     font-size: 15px;
   }
 
@@ -517,10 +620,10 @@ footer .row > div {
     height: 350px;
   }
 
-  #search-input{
+  #search-input {
     width: 210px !important;
   }
-  
+
   .hero-content .search-background {
     width: 350px;
     height: 80px !important;
@@ -538,7 +641,7 @@ footer .row > div {
     /* padding-left: 16px; */
   }
 
-  .options-row .btn{
+  .options-row .btn {
     font-size: 14px !important;
   }
 
@@ -553,7 +656,7 @@ footer .row > div {
   nav {
     padding: 3px !important;
   }
-  
+
   .f {
     width: 450px !important;
     text-align: center !important;
@@ -581,7 +684,7 @@ footer .row > div {
     margin-bottom: 10px !important;
   }
 
-  .area2{
+  .area2 {
     margin-top: 0px;
   }
 
@@ -605,10 +708,10 @@ footer .row > div {
         margin-left: 92px !important;
     } */
 
-    .loginContainer{
-      margin-top: 50px;
-      margin-bottom: 100px !important;
-    }
+  .loginContainer {
+    margin-top: 50px;
+    margin-bottom: 100px !important;
+  }
 }
 
 @media screen and (max-width: 992px) and (min-width: 800px) {
@@ -644,7 +747,7 @@ footer .row > div {
     /* padding-left: 16px; */
   }
 
-  .options-row .btn{
+  .options-row .btn {
     font-size: 15px !important;
   }
 
@@ -652,17 +755,19 @@ footer .row > div {
     max-width: 25%;
   }
 
-  .row-rent h2{
+  .row-rent h2 {
     margin-left: 0px !important;
   }
 
   nav {
     padding: 3px !important;
   }
+
   .f {
     width: 450px !important;
     text-align: center !important;
   }
+
   .list {
     width: 50%;
   }
@@ -716,7 +821,7 @@ footer .row > div {
     margin-left: -80px;
   }
 
-  .loginContainer{
+  .loginContainer {
     margin-top: 50px;
     margin-bottom: 100px !important;
   }
@@ -737,15 +842,16 @@ footer .row > div {
     margin-top: 20px !important;
   }
 
-  .hero-content h2{
+  .hero-content h2 {
     font-size: 20px;
   }
 
-  .hero-content p{
+  .hero-content p {
     font-size: 15px;
   }
+
   .hero-content .search-background {
-    max-width: 413px  !important;
+    max-width: 413px !important;
     height: 60px !important;
   }
 
@@ -756,21 +862,22 @@ footer .row > div {
 
   .FormControl {
     font-size: 12px;
-    padding: 5px 10px; 
-    width: 180px; 
-  }
-  
-  .bttt {
-    font-size: 12px; 
-    padding: 5px 10px; 
-  }
-  
-  /* Adjust placeholder text size */
-  #search-input::placeholder {
-    font-size: 15px; /* Decrease font size */
+    padding: 5px 10px;
+    width: 180px;
   }
 
-  .search-form{
+  .bttt {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  /* Adjust placeholder text size */
+  #search-input::placeholder {
+    font-size: 15px;
+    /* Decrease font size */
+  }
+
+  .search-form {
     margin-top: -5px !important;
   }
 
@@ -786,7 +893,7 @@ footer .row > div {
     /* padding-left: 16px; */
   }
 
-  .options-row .btn{
+  .options-row .btn {
     font-size: 14px !important;
   }
 
@@ -818,7 +925,7 @@ footer .row > div {
     margin-bottom: 10px !important;
   }
 
-  .area2{
+  .area2 {
     margin-top: 0px;
   }
 
@@ -836,7 +943,7 @@ footer .row > div {
     margin-top: 50px !important;
   }
 
-  .loginContainer{
+  .loginContainer {
     margin-top: 50px;
     margin-bottom: 100px !important;
   }

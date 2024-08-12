@@ -20,7 +20,7 @@ export default function Login() {
       const user = users.find(user => user.userName === username && user.password === password);
 
       if (user) {
-        loginin()
+        loginin(user.userId)
         navigate("/home");
       } else {
         alert('Invalid username or password');
