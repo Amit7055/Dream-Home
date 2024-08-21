@@ -3,15 +3,14 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 
-export default function BuyerForm() {
+export default function RentForm() {
   const [listing, setListing] = useState([]);
   const { getUserId } = useContext(AuthContext);
   const [user, setUser] = useState([]);
   const [image, setImage] = useState(null);
-  const { setPropertyId } = useContext(AuthContext);
   const [searchParams] = useSearchParams();
   const query = parseInt(searchParams.get("q"));
-  const userBuyer = getUserId();
+  const userRent = getUserId();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,7 +34,7 @@ export default function BuyerForm() {
         }
 
         const responseUser = await axios.get(
-          `http://localhost:9999/user/getUser/${userBuyer}`
+          `http://localhost:9999/user/getUser/${userRent}`
         );
         setUser(responseUser.data);
 
@@ -109,7 +108,7 @@ export default function BuyerForm() {
         style={{ marginTop: `1.5%`, marginBottom: `100px` }}
       >
         <div className="card-header text-center bg-warning text-light">
-          <h1 className="text-center mb-5">Buyer Form</h1>
+          <h1 className="text-center mb-5">Rent Form</h1>
         </div>
         <div className="row justify-content-center">
           <div className="col-lg-12">

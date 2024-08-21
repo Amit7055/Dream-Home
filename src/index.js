@@ -30,6 +30,7 @@ import AdminProperty from "./components/AdminProperty";
 import AdminUserDetail from "./components/AdminUserDetail";
 import ForgotPassword from "./components/ForgotPassword";
 import AdminAppointment from "./components/AdminAppointment";
+import RentForm from "./components/RentForm";
 
 
 
@@ -51,6 +52,7 @@ root.render(
           <Route path="detail" element={<Details />}/>
           <Route path="appointment" element={<Appointment />}/>
           <Route path="buyerForm" element={<BuyerForm />}/>
+          <Route path="rentForm" element={<RentForm/>}/>
           <Route path="aboutus" element={<AboutUs />}/>
           <Route path="property" element={<Property />}/> 
           <Route path="service" element={<Servies />}/> 

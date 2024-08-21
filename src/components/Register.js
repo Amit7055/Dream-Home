@@ -1,53 +1,58 @@
-import React, { useState, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import emailjs from '@emailjs/browser';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useState, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import emailjs from "@emailjs/browser";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Register() {
   const navigate = useNavigate();
   const form = useRef();
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [phoneNo, setPhoneNo] = useState('');
-  const [address, setAddress] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
-  const [pincode, setPincode] = useState('');
-  const [error, setError] = useState('');
+
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phoneNo, setPhoneNo] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [pincode, setPincode] = useState("");
+  const [error, setError] = useState("");
   const [verify, setVerify] = useState(false);
-  const [verifyCode, setVerifyCode] = useState('');
-  const [generatedCode, setGeneratedCode] = useState('');
+  const [verifyCode, setVerifyCode] = useState("");
+  const [generatedCode, setGeneratedCode] = useState("");
   const [emailSent, setEmailSent] = useState(false);
   const [verificationSuccess, setVerificationSuccess] = useState(false);
-  const [info, setInfo] = useState('');
-  const[infoPassword , setInfoPassword] = useState('');
+  const [info, setInfo] = useState("");
+  const [infoPassword, setInfoPassword] = useState("");
 
   const usernamePattern = /^[a-zA-Z0-9]+$/;
-  const passwordPattern = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\-]).{4,8}$/;
-  const emailPattern = /^([a-zA-Z0-9]([a-zA-Z0-9_\.]+)?[a-zA-Z0-9])@(([a-zA-Z0-9]([a-zA-Z0-9\-]+)?[a-zA-Z0-9])\.([a-zA-Z]{2,})(\.[a-zA-Z]{2,})?)$/;
+  const passwordPattern =
+    /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\-]).{4,8}$/;
+  const emailPattern =
+    /^([a-zA-Z0-9]([a-zA-Z0-9_\.]+)?[a-zA-Z0-9])@(([a-zA-Z0-9]([a-zA-Z0-9\-]+)?[a-zA-Z0-9])\.([a-zA-Z]{2,})(\.[a-zA-Z]{2,})?)$/;
   const phonePattern = /^\d{10}$/; // Exactly 10 digits
   const pincodePattern = /^\d{6}$/; // Exactly 6 digits
   const wordPattern = /^[a-zA-Z\s]+$/; // Only letters and spaces
 
   const handleMouseOverUserName = () => {
-    setInfo('Username must contain only letters and numbers without spaces..');
+    setInfo("Username must contain only letters and numbers without spaces..");
   };
 
   const handleMouseOutUser = () => {
-    setInfo('');
+    setInfo("");
   };
 
   const handleMouseOverPassword = () => {
-    setInfoPassword('Password must be 4 to 8 characters long and include at least one lowercase letter, one uppercase letter, one digit, and one special character (@, #, -).');
+    setInfoPassword(
+      "Password must be 4 to 8 characters long and include at least one lowercase letter, one uppercase letter, one digit, and one special character (@, #, -)."
+    );
   };
 
   const handleMouseOutPassword = () => {
-    setInfoPassword('');
+    setInfoPassword("");
   };
 
   const generateVerificationCode = () => {
@@ -58,74 +63,109 @@ export default function Register() {
 
   const sendVerificationEmail = (code) => {
     form.current.verification_code.value = code;
-    form.current.to_email.value = email; 
-    form.current.user_name.value = username; 
-    form.current.from_name.value = 'Dream Home'; 
+    form.current.to_email.value = email;
+    form.current.user_name.value = username;
+    form.current.from_name.value = "Dream Home";
 
-    emailjs.sendForm('service_v26g5ji', 'template_sa0jtrx', form.current, 'r0WFbtk28AelP5tlp')
-      .then((response) => {
-        toast.success('Email sent successfully!', {
-          className: 'custom-toast-success',
-        });
-        setEmailSent(true);
-      }, (err) => {
-        console.error('Failed to send email:', err.text);
-        setError('Failed to send verification email. Please try again.');
-      });
+    emailjs
+      .sendForm(
+        "service_v26g5ji",
+        "template_sa0jtrx",
+        form.current,
+        "r0WFbtk28AelP5tlp"
+      )
+      .then(
+        (response) => {
+          toast.success("Email sent successfully!", {
+            className: "custom-toast-success",
+          });
+          setEmailSent(true);
+        },
+        (err) => {
+          console.error("Failed to send email:", err.text);
+          setError("Failed to send verification email. Please try again.");
+        }
+      );
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
+    const response = await axios.get(
+      `http://localhost:9999/user/name/${username}`
+    );
+    if (response.data.length != 0) {
+      toast.error("Username already exists", {
+        className: "custom-toast-error",
+      });
+      return;
+    }
+
     if (!usernamePattern.test(username)) {
-      alert('Invalid username format. Username must contain only letters and numbers without spaces.');
-      setError('Invalid username format');
+      toast.warning(
+        "Invalid username format. Username must contain only letters and numbers without spaces.",
+        {
+          className: "custom-toast-warning",
+        }
+      );
       return;
     }
     if (!emailPattern.test(email)) {
-      alert('Invalid email format');
-      setError('Invalid email format');
+      alert("Invalid email format");
+      toast.warning("Invalid email format", {
+        className: "custom-toast-warning",
+      });
       return;
     }
     if (!passwordPattern.test(password)) {
-      alert('Invalid password format. Password must be 4 to 8 characters long, and include at least one lowercase letter, one uppercase letter, one digit, and one special character (@, #, -).');
-      setError('Invalid password format');
+      toast.warning(
+        "nvalid password format. Password must be 4 to 8 characters long, and include at least one lowercase letter, one uppercase letter, one digit, and one special character (@, #, -).",
+        {
+          className: "custom-toast-warning",
+        }
+      );
       return;
     }
     if (!phonePattern.test(phoneNo)) {
-      alert('Phone number must be exactly 10 digits');
-      setError('Phone number must be exactly 10 digits');
+      toast.warning("Phone number must be exactly 10 digits", {
+        className: "custom-toast-warning",
+      });
       return;
     }
     if (!pincodePattern.test(pincode)) {
-      alert('Pincode must be exactly 6 digits');
-      setError('Pincode must be exactly 6 digits');
+      toast.warning("Pincode must be exactly 6 digits", {
+        className: "custom-toast-warning",
+      });
       return;
     }
     if (!wordPattern.test(city)) {
-      alert('City must contain only letters');
-      setError('City must contain only letters');
+      toast.warning("City must contain only letters", {
+        className: "custom-toast-warning",
+      });
       return;
     }
     if (!wordPattern.test(state)) {
-      alert('State must contain only letters');
-      setError('State must contain only letters');
+      toast.warning("State must contain only letters", {
+        className: "custom-toast-warning",
+      });
       return;
     }
     if (!wordPattern.test(firstName)) {
-      alert('firstName must contain only letters');
-      setError('firstName must contain only letters');
+      toast.warning("firstName must contain only letters", {
+        className: "custom-toast-warning",
+      });
       return;
     }
     if (!wordPattern.test(lastName)) {
-      alert('lastName must contain only letters');
-      setError('lastName must contain only letters');
+      toast.warning("lastName must contain only letters", {
+        className: "custom-toast-warning",
+      });
       return;
     }
 
     // Clear error on successful validation
-    setError('');
-    
+    setError("");
+
     const code = generateVerificationCode();
     sendVerificationEmail(code);
     setVerify(true);
@@ -148,27 +188,32 @@ export default function Register() {
             state,
             pincode,
             userName: username,
-            password
+            password,
           };
 
-          const response = await axios.post('http://localhost:9999/user/add', newUser);
+          const response = await axios.post(
+            "http://localhost:9999/user/add",
+            newUser
+          );
           if (response.status === 200) {
-            toast.success('Registeration Successfully!', {
-              className: 'custom-toast-success',
+            toast.success("Registeration Successfully!", {
+              className: "custom-toast-success",
             });
             setVerify(false);
             navigate("/login");
           } else {
-            setError('Registration failed');
+            toast.warning("Registration failed", {
+              className: "custom-toast-warning",
+            });
           }
         } catch (error) {
-          console.error('Error registering user:', error);
-          setError('An error occurred during registration. Please try again.');
+          console.error("Error registering user:", error);
+          setError("An error occurred during registration. Please try again.");
         }
       }, 2000); // Delay for 2 seconds
     } else {
       toast.warning("Invalid verification code", {
-        className: 'custom-toast-warning',
+        className: "custom-toast-warning",
       });
       // setError('Invalid verification code');
     }
@@ -177,161 +222,203 @@ export default function Register() {
   // Function to clear error when user starts typing
   const handleInputChange = (setter) => (e) => {
     setter(e.target.value);
-    if (error) setError(''); // Clear error when user changes input
+    if (error) setError(""); // Clear error when user changes input
   };
 
   return (
     <div>
-      <div className="container">
-      <ToastContainer position="bottom-center" />
+      <div className="container ">
+        <ToastContainer position="bottom-center" />
         <div className="row justify-content-center mt-5">
-          <div className="col-md-6">
-            <form className="registration-form" ref={form} onSubmit={verify ? handleVerify : handleSubmit}>
-              <h2 className="mb-4">Registration</h2>
-              {error && <div className="alert alert-danger">{error}</div>}
+          <div className="col-md-8 mt-5">
+            <form
+              className="registration-form bg-warning-subtle "
+              ref={form}
+              onSubmit={verify ? handleVerify : handleSubmit}
+            >
+              <div className="card-header text-center bg-warning text-light">
+                <h2 className="text-center mb-5">Registration</h2>
+              </div>
               {!verify && (
                 <>
-                  <div className="form-group">
-                    <label htmlFor="firstName">First Name</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="firstName"
-                      placeholder="Enter first name"
-                      value={firstName}
-                      onChange={handleInputChange(setFirstName)}
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="lastName">Last Name</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="lastName"
-                      placeholder="Enter last name"
-                      value={lastName}
-                      onChange={handleInputChange(setLastName)}
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="username">Username</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="username"
-                      name="user_name"
-                      placeholder="Enter username"
-                      value={username}
-                      onChange={handleInputChange(setUsername)}
-                      required
-                      onMouseOver={handleMouseOverUserName}
-                      onMouseOut={handleMouseOutUser}
-                    />
-                    {/* Display information on hover */}
-                    {info && <div className="hover-info text-warning-emphasis">{info}</div>}
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="email">Email address</label>
-                    <input
-                      type="email"
-                      className="form-control"
-                      id="email"
-                      name="to_email"
-                      placeholder="Enter email"
-                      value={email}
-                      onChange={handleInputChange(setEmail)}
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="phoneNo">Phone Number</label>
-                    <input
-                      type="tel"
-                      className="form-control"
-                      id="phoneNo"
-                      placeholder="Enter phone number"
-                      value={phoneNo}
-                      onChange={handleInputChange(setPhoneNo)}
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="address">Address</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="address"
-                      placeholder="Enter address"
-                      value={address}
-                      onChange={handleInputChange(setAddress)}
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="city">City</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="city"
-                      placeholder="Enter city"
-                      value={city}
-                      onChange={handleInputChange(setCity)}
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="state">State</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="state"
-                      placeholder="Enter state"
-                      value={state}
-                      onChange={handleInputChange(setState)}
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="pincode">Pincode</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="pincode"
-                      placeholder="Enter pincode"
-                      value={pincode}
-                      onChange={handleInputChange(setPincode)}
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input
-                      type="password"
-                      className="form-control"
-                      id="password"
-                      name="password"
-                      placeholder="Password"
-                      value={password}
-                      onChange={handleInputChange(setPassword)}
-                      required
-                      onMouseOver={handleMouseOverPassword}
-                      onMouseOut={handleMouseOutPassword}
-                    />
-                    {/* Display information on hover */}
-                    {infoPassword && <div className="hover-info text-warning-emphasis">{infoPassword}</div>}
+                  <div className="container">
+                    <div className="row">
+                      <div className="col-xl-6">
+                        <div className="form-group">
+                          <label htmlFor="firstName">First Name</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="firstName"
+                            placeholder="Enter first name"
+                            value={firstName}
+                            onChange={handleInputChange(setFirstName)}
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className="col-xl-6">
+                        <div className="form-group">
+                          <label htmlFor="lastName">Last Name</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="lastName"
+                            placeholder="Enter last name"
+                            value={lastName}
+                            onChange={handleInputChange(setLastName)}
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className="col-xl-6">
+                        <div className="form-group">
+                          <label htmlFor="email">Email address</label>
+                          <input
+                            type="email"
+                            className="form-control"
+                            id="email"
+                            name="to_email"
+                            placeholder="Enter email"
+                            value={email}
+                            onChange={handleInputChange(setEmail)}
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className="col-xl-6">
+                        <div className="form-group">
+                          <label htmlFor="phoneNo">Phone Number</label>
+                          <input
+                            type="tel"
+                            className="form-control"
+                            id="phoneNo"
+                            placeholder="Enter phone number"
+                            value={phoneNo}
+                            onChange={handleInputChange(setPhoneNo)}
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className="col-xl-6">
+                        <div className="form-group">
+                          <label htmlFor="address">Address</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="address"
+                            placeholder="Enter address"
+                            value={address}
+                            onChange={handleInputChange(setAddress)}
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className="col-xl-6">
+                        <div className="form-group">
+                          <label htmlFor="city">City</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="city"
+                            placeholder="Enter city"
+                            value={city}
+                            onChange={handleInputChange(setCity)}
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className="col-xl-6">
+                        <div className="form-group">
+                          <label htmlFor="state">State</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="state"
+                            placeholder="Enter state"
+                            value={state}
+                            onChange={handleInputChange(setState)}
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className="col-xl-6">
+                        <div className="form-group">
+                          <label htmlFor="pincode">Pincode</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="pincode"
+                            placeholder="Enter pincode"
+                            value={pincode}
+                            onChange={handleInputChange(setPincode)}
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className="col-xl-6">
+                        <div className="form-group">
+                          <label htmlFor="username">Username</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="username"
+                            name="user_name"
+                            placeholder="Enter username"
+                            value={username}
+                            onChange={handleInputChange(setUsername)}
+                            required
+                            onMouseOver={handleMouseOverUserName}
+                            onMouseOut={handleMouseOutUser}
+                          />
+                          {/* Display information on hover */}
+                          {info && (
+                            <div className="hover-info text-warning-emphasis">
+                              {info}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      <div className="col-xl-6">
+                        <div className="form-group">
+                          <label htmlFor="password">Password</label>
+                          <input
+                            type="password"
+                            className="form-control"
+                            id="password"
+                            name="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={handleInputChange(setPassword)}
+                            required
+                            onMouseOver={handleMouseOverPassword}
+                            onMouseOut={handleMouseOutPassword}
+                          />
+                          {/* Display information on hover */}
+                          {infoPassword && (
+                            <div className="hover-info text-warning-emphasis">
+                              {infoPassword}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <input type="hidden" name="verification_code" />
                   <input type="hidden" name="from_name" />
-                  <button type="submit" className="btn btn-primary btn-block">Register</button>
-                  {emailSent && <div className="alert alert-success mt-3">Verification email sent successfully.</div>}
+                  <button type="submit" className="btn btn-primary btn-block">
+                    Register
+                  </button>
+                  {emailSent && (
+                    <div className="alert alert-success mt-3">
+                      Verification email sent successfully.
+                    </div>
+                  )}
                 </>
               )}
               {verify && (
                 <>
                   <div className="form-group">
-                    <p>Code is sent to your email</p>
                     <label htmlFor="verifyCode">Verify Code</label>
                     <input
                       type="text"
@@ -341,12 +428,20 @@ export default function Register() {
                       required
                     />
                   </div>
-                  <button type="submit" className="btn btn-primary btn-block">Verify</button>
-                  {verificationSuccess && <div className="alert alert-success mt-3">Code verified successfully. Redirecting to login...</div>}
+                  <button type="submit" className="btn btn-primary btn-block">
+                    Verify
+                  </button>
+                  {verificationSuccess && (
+                    toast.success("Registeration Successfully!", {
+                      className: "custom-toast-success",
+                    })
+                  )}
                 </>
               )}
               <div className="text-center mt-3">
-                <Link to={"/login"} className="login-link">Already have an account? Login here</Link>
+                <Link to={"/login"} className="login-link">
+                  Already have an account? Login here
+                </Link>
               </div>
             </form>
           </div>

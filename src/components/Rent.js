@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
-
+import axios from "axios";
 
 const rentPriceRanges = [
   { value: "all", label: "All Price Ranges" },
@@ -27,21 +26,43 @@ const allPriceRanges = [
 ];
 
 export default function Rent() {
-
   const [listings, setListingss] = useState([]);
+  const [displayProperties, setDisplayProperties] = useState([]);
 
   useEffect(() => {
     const fetchProperties = async () => {
       try {
-        const response = await axios.get('http://localhost:9999/properties/all');
-        setListingss(response.data);
+        const response = await axios.get(
+          "http://localhost:9999/properties/all"
+        );
+        const fetchedListings = response.data;
+
+        const responseImage = await axios.get(
+          "http://localhost:9999/api/images/all"
+        );
+        const imageMap = new Map(
+          responseImage.data.map((image) => [
+            image.properties.propertyId,
+            image.imagedata,
+          ])
+        );
+
+        const updatedProperties = fetchedListings.map((property) => ({
+          ...property,
+          imageUrl: imageMap.get(property.propertyId)
+            ? `data:image/jpeg;base64,${imageMap.get(property.propertyId)}`
+            : "",
+        }));
+
+        setListingss(updatedProperties);
+        setDisplayProperties(updatedProperties);
       } catch (error) {
-        console.error('There was an error fetching the properties!', error);
+        console.error("There was an error fetching the properties!", error);
       }
     };
 
     fetchProperties();
-  }, []);  
+  }, []);
 
   var navigate = useNavigate();
   const [filter, setFilter] = useState({
@@ -195,7 +216,7 @@ export default function Rent() {
                 navigate(`/landlordtenant`);
               }}
             >
-              Landlord/Tenant 
+              Landlord/Tenant
             </button>
           </div>
         </div>
@@ -354,7 +375,7 @@ export default function Rent() {
             <div className="col-md-4 mb-4 mt-4 list" key={listing.id}>
               <div className="card">
                 <img
-                  src={listing.image}
+                  src={listing.imageUrl}
                   className="card-img-top listImg"
                   alt={listing.description}
                 />
@@ -364,15 +385,39 @@ export default function Rent() {
                   <p className="card-text">
                     <strong>Price:</strong> ${listing.price}
                   </p>
-                  <a
-                    className="btn btn-primary"
-                    onClick={() => {
-                      navigate(`/detail?q=${listing.propertyId}`);
-                      console.log(listing.propertyId);
-                    }}
-                  >
-                    View Details
-                  </a>
+                  <div className="container">
+                    <div className="row">
+                      <div className="col-md-4">
+                        <a
+                          className="btn btn-success"
+                          onClick={() => {
+                            navigate(`/detail?q=${listing.propertyId}`);
+                          }}
+                        >
+                          View Details
+                        </a>
+                      </div>
+                      <div className="col-md-4">
+                        <a
+                          className="btn btn-info"
+                          onClick={() =>
+                            navigate(`/rentForm?q=${listing.propertyId}`)
+                          }
+                        >
+                          Rent Now
+                        </a>
+                      </div>
+                      <div className="col-md-4">
+                        <button
+                          className="btn btn-warning"
+                          style={{ marginRight: "10px" }}
+                          onClick={() => navigate(`/appointment?q=${listing.propertyId}`)}
+                        >
+                          Make an Appointment
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

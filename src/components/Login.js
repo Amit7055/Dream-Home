@@ -31,8 +31,6 @@ export default function Login() {
         });
         loginin(user.userId);
         setTimeout(() => {
-          console.log(user.userId);
-          
           loginin(user.userId);
           navigate("/home");
         }, 1500);
@@ -44,7 +42,9 @@ export default function Login() {
       }
     } catch (error) {
       console.error('Error fetching user data:', error);
-      alert('An error occurred. Please try again later.');
+      toast.warning("An error occurred. Please try again later.", {
+        className: 'custom-toast-warning',
+      });
     }
   };
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 
 const rentPriceRanges = [
   { value: "all", label: "All Price Ranges" },
@@ -26,41 +26,43 @@ const allPriceRanges = [
 ];
 
 export default function Home1() {
-
   const [listings, setListingss] = useState([]);
   const [displayProperties, setDisplayProperties] = useState([]);
 
   useEffect(() => {
     const fetchProperties = async () => {
       try {
-        const response = await axios.get('http://localhost:9999/properties/all');
+        const response = await axios.get(
+          "http://localhost:9999/properties/all"
+        );
         const fetchedListings = response.data;
-  
-        const responseImage = await axios.get("http://localhost:9999/api/images/all");
+
+        const responseImage = await axios.get(
+          "http://localhost:9999/api/images/all"
+        );
         const imageMap = new Map(
           responseImage.data.map((image) => [
             image.properties.propertyId,
             image.imagedata,
           ])
         );
-  
+
         const updatedProperties = fetchedListings.map((property) => ({
           ...property,
           imageUrl: imageMap.get(property.propertyId)
             ? `data:image/jpeg;base64,${imageMap.get(property.propertyId)}`
             : "",
         }));
-  
+
         setListingss(updatedProperties);
         setDisplayProperties(updatedProperties);
       } catch (error) {
-        console.error('There was an error fetching the properties!', error);
+        console.error("There was an error fetching the properties!", error);
       }
     };
-  
+
     fetchProperties();
   }, []);
-  
 
   const [filter, setFilter] = useState({
     type: "all",
@@ -206,14 +208,17 @@ export default function Home1() {
     )
   ).filter((area) => area.toLowerCase().includes(searchArea.toLowerCase()));
 
-  const show = (value)=>{
-      setDropdownOpen(value);
-      setDropdownOpenArea(value);
-  }
+  const show = (value) => {
+    setDropdownOpen(value);
+    setDropdownOpenArea(value);
+  };
 
   return (
     <div>
-      <div className=" container options-row text-center" onClick={() => show(false)}>
+      <div
+        className=" container options-row text-center"
+        onClick={() => show(false)}
+      >
         <div className="row">
           <div className="col-md-3">
             <button
@@ -252,14 +257,16 @@ export default function Home1() {
                 navigate(`/landlordtenant`);
               }}
             >
-              Landlord/Tenant 
+              Landlord/Tenant
             </button>
           </div>
         </div>
       </div>
 
-      <div className="container dropdown1 text-center" >
-        <h2 className="text-center" onClick={() => show(false)}>Filter</h2>
+      <div className="container dropdown1 text-center">
+        <h2 className="text-center" onClick={() => show(false)}>
+          Filter
+        </h2>
         <div className="row text-center">
           <div className="col-md-6" onClick={() => show(false)}>
             <select
@@ -273,7 +280,7 @@ export default function Home1() {
               <option value="buy">Buy</option>
             </select>
           </div>
-          <div className="col-md-6" onClick={() => show(false)}> 
+          <div className="col-md-6" onClick={() => show(false)}>
             <select
               className="form-select area"
               name="propertyType"
@@ -299,7 +306,7 @@ export default function Home1() {
               value={searchCity}
               onChange={(e) => {
                 setSearchCity(e.target.value);
-                 setDropdownOpen(true);
+                setDropdownOpen(true);
               }}
               onClick={() => setDropdownOpen(!dropdownOpen)}
             />
@@ -341,7 +348,7 @@ export default function Home1() {
               </div>
             )}
           </div>
-          <div className="col-md-6" onClick={() => setDropdownOpen(false)}  >
+          <div className="col-md-6" onClick={() => setDropdownOpen(false)}>
             <input
               type="text"
               className="form-control area area2"
@@ -394,25 +401,25 @@ export default function Home1() {
 
           <div className="container text-center" onClick={() => show(false)}>
             <div className="row text-center">
-                <div className="col-md-12">
-                  <select
-                    className="form-select"
-                    name="priceRange"
-                    value={filter.priceRange}
-                    onChange={handleFilterChange}
-                  >
-                    {(filter.type === "all"
-                      ? allPriceRanges
-                      : filter.type === "rent"
-                      ? rentPriceRanges
-                      : buyPriceRanges
-                    ).map((range) => (
-                      <option key={range.value} value={range.value}>
-                        {range.label}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+              <div className="col-md-12">
+                <select
+                  className="form-select"
+                  name="priceRange"
+                  value={filter.priceRange}
+                  onChange={handleFilterChange}
+                >
+                  {(filter.type === "all"
+                    ? allPriceRanges
+                    : filter.type === "rent"
+                    ? rentPriceRanges
+                    : buyPriceRanges
+                  ).map((range) => (
+                    <option key={range.value} value={range.value}>
+                      {range.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
           </div>
         </div>
@@ -434,15 +441,53 @@ export default function Home1() {
                   <p className="card-text">
                     <strong>Price:</strong> ${listing.price}
                   </p>
-                  <a
-                    className="btn btn-primary"
-                    onClick={() => {
-                      navigate(`/detail?q=${listing.propertyId}`);
-                      console.log(listing.propertyId);
-                    }}
-                  >
-                    View Details
-                  </a>
+                  <div className="container">
+                    <div className="row">
+                      <div className="col-md-4">
+                        <a
+                          className="btn btn-success"
+                          onClick={() => {
+                            navigate(`/detail?q=${listing.propertyId}`);
+                          }}
+                        >
+                          View Details
+                        </a>
+                      </div>
+                      {listing.type === "rent" && (
+                        <div className="col-md-4">
+                          <a
+                            className="btn btn-info"
+                            onClick={() =>
+                              navigate(`/rentForm?q=${listing.propertyId}`)
+                            }
+                          >
+                            Rent Now
+                          </a>
+                        </div>
+                      )}
+                      {listing.type === "buy" && (
+                        <div className="col-md-4">
+                          <a
+                            className="btn btn-info"
+                            onClick={() =>
+                              navigate(`/buyerForm?q=${listing.propertyId}`)
+                            }
+                          >
+                            Buy Now
+                          </a>
+                        </div>
+                      )}
+                      <div className="col-md-4">
+                        <button
+                          className="btn btn-warning"
+                          style={{ marginRight: "10px" }}
+                           onClick={() => navigate(`/appointment?q=${listing.propertyId}`)}
+                        >
+                          Make an Appointment
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
