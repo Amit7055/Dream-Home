@@ -28,19 +28,39 @@ const allPriceRanges = [
 export default function Home1() {
 
   const [listings, setListingss] = useState([]);
+  const [displayProperties, setDisplayProperties] = useState([]);
 
   useEffect(() => {
     const fetchProperties = async () => {
       try {
         const response = await axios.get('http://localhost:9999/properties/all');
-        setListingss(response.data);
+        const fetchedListings = response.data;
+  
+        const responseImage = await axios.get("http://localhost:9999/api/images/all");
+        const imageMap = new Map(
+          responseImage.data.map((image) => [
+            image.properties.propertyId,
+            image.imagedata,
+          ])
+        );
+  
+        const updatedProperties = fetchedListings.map((property) => ({
+          ...property,
+          imageUrl: imageMap.get(property.propertyId)
+            ? `data:image/jpeg;base64,${imageMap.get(property.propertyId)}`
+            : "",
+        }));
+  
+        setListingss(updatedProperties);
+        setDisplayProperties(updatedProperties);
       } catch (error) {
         console.error('There was an error fetching the properties!', error);
       }
     };
-
+  
     fetchProperties();
   }, []);
+  
 
   const [filter, setFilter] = useState({
     type: "all",
@@ -219,7 +239,7 @@ export default function Home1() {
             <button
               className="btn btn-success"
               onClick={() => {
-                navigate(`/seller?q=${listings.propertyId}`);
+                navigate(`/seller`);
               }}
             >
               Sell Property
@@ -404,7 +424,7 @@ export default function Home1() {
             <div className="col-md-4 mb-4 mt-4 list" key={listing.id}>
               <div className="card">
                 <img
-                  src={listing.image}
+                  src={listing.imageUrl}
                   className="card-img-top listImg"
                   alt={listing.description}
                 />

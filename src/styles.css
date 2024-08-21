@@ -590,7 +590,21 @@ footer .row>div {
   color: white;
 }
 
+.rent-option{
+  background-color: #343a40;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
 
+/* .options-row {
+  margin-top: 80px;
+  color: #ced4da;
+  padding-top: 12px;
+  padding-bottom: 12px;
+} */
 
 @media screen and (max-width: 799px) and (min-width: 414px) {
 
@@ -712,6 +726,11 @@ footer .row>div {
     margin-top: 50px;
     margin-bottom: 100px !important;
   }
+
+  .adminProperty-container {
+    padding: 20px;
+    margin-top: 100px !important;
+  }
 }
 
 @media screen and (max-width: 992px) and (min-width: 800px) {
@@ -824,6 +843,11 @@ footer .row>div {
   .loginContainer {
     margin-top: 50px;
     margin-bottom: 100px !important;
+  }
+
+  .adminProperty-container {
+    padding: 20px;
+    margin-top: 100px !important;
   }
 }
 
@@ -946,5 +970,9 @@ footer .row>div {
   .loginContainer {
     margin-top: 50px;
     margin-bottom: 100px !important;
+  }
+  .adminProperty-container {
+    padding: 20px;
+    margin-top: 100px !important;
   }
 }

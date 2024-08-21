@@ -24,6 +24,13 @@ import Contact from "./components/Contact";
 import LandlordTenantSection from "./components/LandlordTenantSection";
 import Tenant from "./components/Tenant";
 import ViewAppointments from "./components/ViewAppointments";
+import AdminLogin from "./components/AdminLogin";
+import AdminLanding from "./components/AdminLanding";
+import AdminProperty from "./components/AdminProperty";
+import AdminUserDetail from "./components/AdminUserDetail";
+import ForgotPassword from "./components/ForgotPassword";
+import AdminAppointment from "./components/AdminAppointment";
+
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -51,6 +58,13 @@ root.render(
           <Route path="landlordtenant" element={<LandlordTenantSection />}/>
           <Route path="tenant" element={<Tenant />}/>
           <Route path="viewappointments" element={<ViewAppointments />}/>
+          <Route path="adminlogin" element={<AdminLogin />}/>
+          <Route path="admin" element={<AdminLanding />}/>
+          <Route path="adminproperty" element={<AdminProperty />}/>
+          <Route path="adminuser" element={<AdminUserDetail />}/>
+          <Route path="adminproperty" element={<AdminProperty />}/>
+          <Route path="adminappointment" element={<AdminAppointment />}/>
+          <Route path="forgotpassword" element={<ForgotPassword />}/>
         </Route>
       </Routes>
    </AuthProvider>

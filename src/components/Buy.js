@@ -157,13 +157,56 @@ export default function Buy() {
 
   return (
     <div>
-      <div className=" container options-row row-rent">
+      <div className=" container options-row text-center">
+        <div className="row">
+          <div className="col-md-3">
+            <button
+              className="btn btn-success"
+              onClick={() => {
+                navigate(`/rent`);
+              }}
+            >
+              Rental Section
+            </button>
+          </div>
+          <div className="col-md-3">
+            <button
+              className="btn btn-success"
+              onClick={() => {
+                navigate(`/buy`);
+              }}
+            >
+              Buy Property
+            </button>
+          </div>
+          <div className="col-md-3">
+            <button
+              className="btn btn-success"
+              onClick={() => {
+                navigate(`/seller`);
+              }}
+            >
+              Sell Property
+            </button>
+          </div>
+          <div className="col-md-3">
+            <button
+              className="btn btn-success"
+              onClick={() => {
+                navigate(`/landlordtenant`);
+              }}
+            >
+              Landlord/Tenant 
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className=" container rent-option">
         <div className="row">
           <h2 className="text-center">Buy Properties</h2>
         </div>
       </div>
       <div className="container dropdown1">
-        <h2 className="text-center">Filter</h2>
         <div className="row">
           <div className="col-md-6">
             <select

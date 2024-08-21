@@ -2,6 +2,8 @@ import React, { useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import emailjs from '@emailjs/browser';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Register() {
   const navigate = useNavigate();
@@ -22,13 +24,31 @@ export default function Register() {
   const [generatedCode, setGeneratedCode] = useState('');
   const [emailSent, setEmailSent] = useState(false);
   const [verificationSuccess, setVerificationSuccess] = useState(false);
+  const [info, setInfo] = useState('');
+  const[infoPassword , setInfoPassword] = useState('');
 
-  const usernamePattern = /^(?:[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)*)$/;
+  const usernamePattern = /^[a-zA-Z0-9]+$/;
   const passwordPattern = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\-]).{4,8}$/;
   const emailPattern = /^([a-zA-Z0-9]([a-zA-Z0-9_\.]+)?[a-zA-Z0-9])@(([a-zA-Z0-9]([a-zA-Z0-9\-]+)?[a-zA-Z0-9])\.([a-zA-Z]{2,})(\.[a-zA-Z]{2,})?)$/;
   const phonePattern = /^\d{10}$/; // Exactly 10 digits
   const pincodePattern = /^\d{6}$/; // Exactly 6 digits
   const wordPattern = /^[a-zA-Z\s]+$/; // Only letters and spaces
+
+  const handleMouseOverUserName = () => {
+    setInfo('Username must contain only letters and numbers without spaces..');
+  };
+
+  const handleMouseOutUser = () => {
+    setInfo('');
+  };
+
+  const handleMouseOverPassword = () => {
+    setInfoPassword('Password must be 4 to 8 characters long and include at least one lowercase letter, one uppercase letter, one digit, and one special character (@, #, -).');
+  };
+
+  const handleMouseOutPassword = () => {
+    setInfoPassword('');
+  };
 
   const generateVerificationCode = () => {
     const code = Math.floor(100000 + Math.random() * 900000).toString();
@@ -44,7 +64,9 @@ export default function Register() {
 
     emailjs.sendForm('service_v26g5ji', 'template_sa0jtrx', form.current, 'r0WFbtk28AelP5tlp')
       .then((response) => {
-        console.log('Email sent successfully:', response.status, response.text);
+        toast.success('Email sent successfully!', {
+          className: 'custom-toast-success',
+        });
         setEmailSent(true);
       }, (err) => {
         console.error('Failed to send email:', err.text);
@@ -55,33 +77,49 @@ export default function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Validate fields
     if (!usernamePattern.test(username)) {
+      alert('Invalid username format. Username must contain only letters and numbers without spaces.');
       setError('Invalid username format');
       return;
     }
     if (!emailPattern.test(email)) {
+      alert('Invalid email format');
       setError('Invalid email format');
       return;
     }
     if (!passwordPattern.test(password)) {
+      alert('Invalid password format. Password must be 4 to 8 characters long, and include at least one lowercase letter, one uppercase letter, one digit, and one special character (@, #, -).');
       setError('Invalid password format');
       return;
     }
     if (!phonePattern.test(phoneNo)) {
+      alert('Phone number must be exactly 10 digits');
       setError('Phone number must be exactly 10 digits');
       return;
     }
     if (!pincodePattern.test(pincode)) {
+      alert('Pincode must be exactly 6 digits');
       setError('Pincode must be exactly 6 digits');
       return;
     }
     if (!wordPattern.test(city)) {
+      alert('City must contain only letters');
       setError('City must contain only letters');
       return;
     }
     if (!wordPattern.test(state)) {
+      alert('State must contain only letters');
       setError('State must contain only letters');
+      return;
+    }
+    if (!wordPattern.test(firstName)) {
+      alert('firstName must contain only letters');
+      setError('firstName must contain only letters');
+      return;
+    }
+    if (!wordPattern.test(lastName)) {
+      alert('lastName must contain only letters');
+      setError('lastName must contain only letters');
       return;
     }
 
@@ -115,7 +153,9 @@ export default function Register() {
 
           const response = await axios.post('http://localhost:9999/user/add', newUser);
           if (response.status === 200) {
-            console.log('User registered successfully');
+            toast.success('Registeration Successfully!', {
+              className: 'custom-toast-success',
+            });
             setVerify(false);
             navigate("/login");
           } else {
@@ -125,9 +165,12 @@ export default function Register() {
           console.error('Error registering user:', error);
           setError('An error occurred during registration. Please try again.');
         }
-      }, 2000); // Delay navigation for 2 seconds
+      }, 2000); // Delay for 2 seconds
     } else {
-      setError('Invalid verification code');
+      toast.warning("Invalid verification code", {
+        className: 'custom-toast-warning',
+      });
+      // setError('Invalid verification code');
     }
   };
 
@@ -140,6 +183,7 @@ export default function Register() {
   return (
     <div>
       <div className="container">
+      <ToastContainer position="bottom-center" />
         <div className="row justify-content-center mt-5">
           <div className="col-md-6">
             <form className="registration-form" ref={form} onSubmit={verify ? handleVerify : handleSubmit}>
@@ -182,7 +226,11 @@ export default function Register() {
                       value={username}
                       onChange={handleInputChange(setUsername)}
                       required
+                      onMouseOver={handleMouseOverUserName}
+                      onMouseOut={handleMouseOutUser}
                     />
+                    {/* Display information on hover */}
+                    {info && <div className="hover-info text-warning-emphasis">{info}</div>}
                   </div>
                   <div className="form-group">
                     <label htmlFor="email">Email address</label>
@@ -268,7 +316,11 @@ export default function Register() {
                       value={password}
                       onChange={handleInputChange(setPassword)}
                       required
+                      onMouseOver={handleMouseOverPassword}
+                      onMouseOut={handleMouseOutPassword}
                     />
+                    {/* Display information on hover */}
+                    {infoPassword && <div className="hover-info text-warning-emphasis">{infoPassword}</div>}
                   </div>
                   <input type="hidden" name="verification_code" />
                   <input type="hidden" name="from_name" />
@@ -303,4 +355,3 @@ export default function Register() {
     </div>
   );
 }
-
